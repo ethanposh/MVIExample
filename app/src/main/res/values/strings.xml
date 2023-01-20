@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MVIExample</string>
+    <string name="get_user">get user</string>
+    <string name="get_blogs">get blogs</string>
 </resources>
