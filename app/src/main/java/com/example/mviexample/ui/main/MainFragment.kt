@@ -7,8 +7,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.mviexample.R
 import com.example.mviexample.model.BlogPost
+import com.example.mviexample.model.User
 import com.example.mviexample.ui.datastatelistener.DataStateListener
 import com.example.mviexample.ui.main.state.MainStateEvent.*
 import com.example.mviexample.util.TopSpacingItemDecoration
@@ -90,11 +92,24 @@ class MainFragment : Fragment(),
                 blogListAdapter.submitList(blogPosts)
             }
 
-            viewState.user?.let {
+            viewState.user?.let { user->
                 // set User data to widgets
                 println("DEBUG: Setting User data: ${viewState.user}")
+                setUserProperties(user)
             }
         })
+    }
+
+    fun setUserProperties(user: User) {
+        email.text = user.email
+        username.text = user.username
+
+        view?.let {
+            Glide.with(it.context)
+                .load(user.image)
+                .into(image)
+        }
+
     }
 
     fun triggerGetUserEvent() {
