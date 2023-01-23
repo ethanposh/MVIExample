@@ -30,7 +30,7 @@ class MainViewModel : ViewModel() {
 
     private fun handleStateEvent(stateEvent: MainStateEvent): LiveData<DataState<MainViewState>> {
         when (stateEvent) {// for each case we need return livedata object
-            is GetBlogPostEvent -> {
+            is GetBlogPostsEvent -> {
                 return Repository.getBlogPosts()
             }
             is GetUserEvent -> {
